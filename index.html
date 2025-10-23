@@ -1,14 +1,70 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="/imagens/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+
+  <a href="#home"><img src="imagens/logo.png" class="logo-fix" alt="logo"></a>
+
+  <div id="lockScreen" class="lock-screen">
+    <div class="login-box">
+      <h3>Digite a senha para continuar</h3>
+      <input type="password" id="passwordInput" placeholder="Senha">
+      <button onclick="unlock()">Desbloquear</button>
+      <a href="#" onclick="resetApp()" class="secondary-link">Criar nova conta / Esqueci a senha</a>
+    </div>
+  </div>
+
+  <section id="home">
+      <h1>Megan App</h1>
+      <p style="max-width:700px; margin-top:20px; line-height: 1.6;">
+          Chega de manhãs caóticas! Com o <strong>Megan</strong>, o despertador inteligente, você transforma as tarefas diárias do seu filho em uma jornada divertida e recompensadora. Nosso sistema de <strong>Monitoramento Educacional Gamificado Assistido por Notificações (M.E.G.A.N.)</strong> foi criado para ajudar os pais a construir uma rotina sólida e para as crianças se sentirem motivadas a completar suas atividades.
+      </p>
+      
+      <div style="margin-top:40px; max-width:700px; text-align: left; display: inline-block;">
+          <h3 style="text-align: center; margin-bottom: 20px;">Como o Megan Facilita sua Vida:</h3>
+          <ul>
+              <li><strong>Rotinas Personalizadas:</strong> Configure facilmente as tarefas diárias e os horários, adaptando o Megan à necessidade da sua família.</li>
+              <li><strong>Despertador Inteligente:</strong> Crie alarmes para cada atividade, desde acordar até a hora de dormir, garantindo que nada seja esquecido.</li>
+              <li><strong>Motivação e Recompensa:</strong> Ajude seu filho a visualizar o progresso e celebre cada tarefa concluída com um sistema interativo e divertido.</li>
+          </ul>
+      </div>
+      
+      <p style="max-width:700px; margin-top:40px;">
+          <strong>Pronto para começar?</strong> Vá até a <a href="perfil.html" style="color: var(--light);">página de Perfil</a> para criar sua conta e montar a primeira rotina!
+      </p>
+
+
+      <img src="imagens/prototipo.png" class="prototipo-img" alt="Prototipo do App">
+    </section>
+  
+    <section id="tasks">
+      <h2 id="routine-title">Rotina de Hoje</h2>
+      <p id="last-edited-info" style="font-size: 12px; color: #aaa; margin-top: -10px; margin-bottom: 20px; min-height: 15px;"></p>
+      <div class="add-task">
+        <input id="taskName" placeholder="Nova tarefa">
+        <input id="taskHour" placeholder="Horário (ex: 08:00)">
+        <button onclick="addTask()">Adicionar Tarefa</button>
+      </div>
+      <div class="cards" id="taskList"></div>
+    </section>
+  
+    <div class="navbar">
+      <a href="#home"><img src="imagens/logo.png" alt="Ir para Home"></a>
+      <a href="#tasks"><img src="imagens/tasks.svg" alt="Ir para Tarefas"></a>
+      <a href="perfil.html"><img src="imagens/profile.svg" alt="Ir para Perfil"></a>
+    </div>
+  
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="/imagens/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a href="index.html#home"><img src="imagens/logo.png" class="logo-fix" alt="logo"></a>
+
+  <section id="profile-section">
+    <h2 style="margin-bottom: 20px;">Configurações de Perfil</h2>
+    <div class="add-task" style="gap:10px;">
+      <h3 id="parentDisplay">Visitante</h3>
+      <p>Nome do Responsável</p>
+      <input id="parentName" placeholder="Digite seu nome">
+      
+      <h3 id="childDisplay">—</h3>
+      <p>Nome da Criança</p>
+      <input id="childName" placeholder="Digite o nome da criança">
+  
+      
+      <div style="display: flex; gap: 10px; width: 100%; margin-top: 20px;">
+        <button onclick="saveProfile()" style="flex: 1;">Salvar Perfil</button>
+        <button onclick="resetApp()" style="flex: 1; background-color: var(--mid); color: #fff;">Reiniciar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="device-connection" style="padding-top:0;">
+    <h2 style="margin-bottom: 20px;">Conectar ao Dispositivo Físico (ESP32)</h2>
+    <div class="add-task">
+        <p>Insira o endereço IP do seu dispositivo Megan na rede local para sincronizar os alarmes.</p>
+        <input id="deviceIP" placeholder="ex: 192.168.1.10" value="192.168.0.15">
+        <button onclick="connectToDevice()">Conectar</button>
+        <p id="connectionStatus" style="margin-top:10px; font-weight: bold;"></p>
+    </div>
+  </section>
+
+  <div class="navbar">
+    <a href="index.html#home"><img src="imagens/logo.png" alt="Ir para Home"></a>
+    <a href="index.html#tasks"><img src="imagens/tasks.svg" alt="Ir para Tarefas"></a>
+    <a href="perfil.html"><img src="imagens/profile.svg" alt="Ir para Perfil"></a>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

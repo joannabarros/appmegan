@@ -1,1 +1,213 @@
-/* Add styles here */
+html {
+    scroll-behavior: smooth;
+}
+
+:root{
+    --dark: #1E003C;
+    --mid-dark: #2A0B52;
+    --mid: #491B83;
+    --light: #B59EE5;
+    --accent-light: #D8C7F7;
+    --accent-dark: #370F66;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Kumbh Sans", sans-serif;
+    background-color: var(--dark);
+    color: #fff;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 20px;
+    border-bottom: 1px solid var(--accent-dark);
+}
+
+.logo-fix{
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 60px;
+  height: 60px;
+  z-index: 1000;
+}
+
+.prototipo-img {
+    max-width: 100%;
+    margin-top: 50px;
+    border-radius: 20px;
+    max-height: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: 5px;
+}
+
+.add-task {
+    background-color: var(--mid-dark);
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+input, button {
+    font-family: "Kumbh Sans", sans-serif;
+    font-size: 1rem;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+}
+
+input {
+    background-color: var(--dark);
+    color: #fff;
+}
+
+button {
+    background-color: var(--light);
+    color: var(--dark);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+button:hover {
+    background-color: var(--accent-light);
+}
+
+.cards {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card {
+    background-color: var(--mid-dark);
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.card button {
+    padding: 8px 12px;
+    background-color: var(--mid);
+    color: #fff;
+}
+
+.card small {
+    color: var(--light);
+    font-size: 0.9rem;
+}
+
+.lock-screen {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(30, 0, 60, 0.9);
+    z-index: 1001;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px;
+    background-color: var(--mid-dark);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.secondary-link {
+    color: var(--light);
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.navbar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background: rgba(50,15,90,0.9);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  height:80px;
+  border-radius:25px 25px 0 0;
+  box-shadow:0 -5px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  z-index:999;
+}
+
+.navbar img{
+  width:36px;
+  height:36px;
+  cursor:pointer;
+  transition: transform .2s;
+}
+
+.navbar img:hover{ transform:scale(1.1); }
+
+@media(max-width:767px){
+  #home {
+    padding: 120px 40px 40px;
+  }
+}
+
+@media(min-width:768px){
+  .login-box,.add-task{ padding:40px; max-width:600px;}
+  .navbar{ max-width:600px; left:50%; transform:translateX(-50%); border-radius:20px 20px 0 0;}
+
+  #home h1 {
+    font-size: 2.5rem;
+  }
+
+  #home h3 {
+    font-size: 1.5rem;
+  }
+
+  #home p, #home ul {
+    font-size: 1.1rem;
+  }
+}

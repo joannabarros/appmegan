@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Megan - Rotina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="scroll-page">
+  <img src="imagens/logo.png" class="logo-fix" alt="logo">
+  <img src="imagens/cloud1.svg" class="cloud c1">
+  <img src="imagens/cloud2.svg" class="cloud c2">
+  <img src="imagens/cloud3.svg" class="cloud c3">
+
+  <section>
+    <h2>Rotina de Hoje</h2>
+    <div class="add-task">
+      <input id="taskName" placeholder="Nova tarefa">
+      <input id="taskHour" placeholder="HHMM" maxlength="4" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      <button onclick="addTask()">Adicionar Tarefa</button>
+    </div>
+
+    <div class="cards" id="taskList"></div>
+  </section>
+
+  <div class="navbar">
+    <img src="imagens/logo.png" onclick="window.location.href='index.html'">
+    <img src="imagens/tasks.svg" onclick="window.location.href='index.html#tasks'">
+    <img src="imagens/profile.svg" onclick="window.location.href='perfil.html'">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
