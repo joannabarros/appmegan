@@ -1,11 +1,8 @@
+// ------------------ Inicialização ------------------
 document.addEventListener('DOMContentLoaded', function () {
-    const currentPage = window.location.pathname.split('/').pop();
-    if (currentPage === 'index.html' || currentPage === '') {
-        loadTasks();
-        setupTaskInputs();
-    } else if (currentPage === 'perfil.html') {
-        loadProfileForEdit();
-    }
+    loadTasks();
+    setupTaskInputs();
+    loadProfileForEdit();
 });
 
 // ------------------ Inputs de tarefa ------------------
@@ -104,10 +101,8 @@ function sendTasksToJSONBin() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     if (tasks.length === 0) return;
 
-    // URL do seu BIN JSON
     const jsonBinURL = "https://api.jsonbin.io/v3/b/68ff791143b1c97be984b17b";
-    // Substitua abaixo pela sua API Key do JSONBin
-    const jsonBinKey = "SEU_API_KEY_AQUI";
+    const jsonBinKey = "$2a$10$fdL9TGBRZHYjDaGfGw3RU.Wmo2Gjh9.KX9NMGdyjBodxRJt6XtUyq";
 
     fetch(jsonBinURL, {
         method: 'PUT',
@@ -118,11 +113,11 @@ function sendTasksToJSONBin() {
         body: JSON.stringify({ tasks })
     })
     .then(res => res.json())
-    .then(data => console.log("Enviado pro JSONBin:", data))
-    .catch(err => console.error("Erro ao enviar pro JSONBin:", err));
+    .then(data => console.log("✅ Enviado pro JSONBin:", data))
+    .catch(err => console.error("❌ Erro ao enviar pro JSONBin:", err));
 }
 
-// ------------------ Perfil e Conexão ------------------
+// ------------------ Perfil ------------------
 function saveProfile() {
     const parentName = document.getElementById('parentName').value;
     const childName = document.getElementById('childName').value;
@@ -135,11 +130,4 @@ function loadProfileForEdit() {
     const profile = JSON.parse(localStorage.getItem('profile')) || {};
     if (profile.parentName) document.getElementById('parentName').value = profile.parentName;
     if (profile.childName) document.getElementById('childName').value = profile.childName;
-}
-
-function connectToDevice() {
-    const ipInput = document.getElementById('deviceIP').value.trim();
-    if (!ipInput) { alert('Insira um IP!'); return; }
-    localStorage.setItem('deviceIP', ipInput);
-    alert('IP salvo! Dispositivo pronto para receber tarefas.');
 }
