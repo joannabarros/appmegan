@@ -82,15 +82,11 @@ function saveProfile() {
     const parentName = document.getElementById('parentName').value;
     const childName = document.getElementById('childName').value;
 
-    const profile = {
-        parentName,
-        childName
-    };
-
+    const profile = { parentName, childName };
     localStorage.setItem('profile', JSON.stringify(profile));
     updateLastEdited();
     alert('Perfil salvo com sucesso!');
-    loadProfileForEdit(); 
+    loadProfileForEdit();
 }
 
 function loadProfileForEdit() {
@@ -117,22 +113,6 @@ function resetApp() {
     }
 }
 
-function formatTime(input) {
-    let value = input.value.replace(/[^0-9]/g, '');
-    if (value.length > 4) value = value.slice(0, 4);
-    if (value.length > 2) {
-        value = value.slice(0, 2) + ':' + value.slice(2);
-    }
-    input.value = value;
-    if (value.length === 5) {
-        const [h, m] = value.split(':').map(Number);
-        if (h > 23 || m > 59) {
-            alert('Hora inválida. Use um horário real entre 00:00 e 23:59.');
-            input.value = '';
-        }
-    }
-}
-
 function addTask() {
     const taskName = document.getElementById('taskName').value;
     const taskHourInput = document.getElementById('taskHour').value;
@@ -154,6 +134,17 @@ function addTask() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
         updateLastEdited();
         loadTasks();
+
+        // --- Envia a tarefa para o ESP32 ---
+        const ESP32_URL = 'http://192.168.1.7/tasks';
+        fetch(ESP32_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tasks })
+        })
+        .then(response => console.log('Tarefas enviadas para ESP32!'))
+        .catch(err => console.error('Erro ao enviar tarefas:', err));
+
         document.getElementById('taskName').value = '';
         document.getElementById('taskHour').value = '';
     }
