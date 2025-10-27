@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function setupTaskInputs() {
     const taskNameInput = document.getElementById('taskName');
     const taskHourInput = document.getElementById('taskHour');
-
     const controlKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
 
     if (taskNameInput) {
@@ -71,7 +70,7 @@ function addTask() {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
     loadTasks();
-    sendTasksToESP32();
+    sendTasksToJSONBin();
 
     document.getElementById('taskName').value = '';
     document.getElementById('taskHour').value = '';
@@ -82,7 +81,7 @@ function deleteTask(index) {
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     loadTasks();
-    sendTasksToESP32();
+    sendTasksToJSONBin();
 }
 
 function loadTasks() {
@@ -100,22 +99,27 @@ function loadTasks() {
     });
 }
 
-// ------------------ Envio para ESP32 ------------------
-function sendTasksToESP32() {
+// ------------------ Envio para JSONBin ------------------
+function sendTasksToJSONBin() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     if (tasks.length === 0) return;
 
-    const ESP32_IP = localStorage.getItem('deviceIP') || '192.168.1.7';
-    const ESP32_URL = `http://${ESP32_IP}/tasks`;
+    // URL do seu BIN JSON
+    const jsonBinURL = "https://api.jsonbin.io/v3/b/68ff791143b1c97be984b17b";
+    // Substitua abaixo pela sua API Key do JSONBin
+    const jsonBinKey = "SEU_API_KEY_AQUI";
 
-    fetch(ESP32_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+    fetch(jsonBinURL, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': jsonBinKey
+        },
         body: JSON.stringify({ tasks })
     })
-    .then(res => res.text())
-    .then(data => console.log("ESP32 respondeu:", data))
-    .catch(err => console.error("Erro ao enviar pro ESP32:", err));
+    .then(res => res.json())
+    .then(data => console.log("Enviado pro JSONBin:", data))
+    .catch(err => console.error("Erro ao enviar pro JSONBin:", err));
 }
 
 // ------------------ Perfil e Conexão ------------------
